@@ -1,0 +1,14 @@
+table {
+    width: 90%;
+    border-collapse: collapse;    
+    margin: 20px auto 0;
+    border-radius: 15px !important;
+}
+
+  .search {
+    margin: 10px auto;
+    width: 97%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 20px;
+  }

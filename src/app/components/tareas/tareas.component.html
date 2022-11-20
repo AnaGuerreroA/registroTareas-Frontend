@@ -1,0 +1,6 @@
+<div class="creaTarea">
+    <app-crea-tarea (nuevaTarea)="nuevaTareaMetodo($event)" [tarea]="this.tareaValor" ></app-crea-tarea>
+</div>
+<div class="tablaTarea">
+    <app-tabla-tareas [TareaCreada]=this.tareaValor  (nuevaTareaEditar)="editarTareaMetodo($event)"  ></app-tabla-tareas>    
+</div>
