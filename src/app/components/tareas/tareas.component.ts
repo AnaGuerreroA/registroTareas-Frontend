@@ -54,13 +54,11 @@ export class TareasComponent implements OnInit {
   nuevaTareaMetodo(TareaCreada: Tarea): void {
     this.TareaCreadaOut.emit(TareaCreada);
     this.tareaValor = TareaCreada;
-    console.log("tareas.component " + TareaCreada);
   }
 
   editarTareaMetodo(TareaEditar: Tarea): void {
     this.TareaEditarOut.emit(TareaEditar);
     this.tareaValor = TareaEditar;
-    console.log("tareas.component " + TareaEditar);
   }
 
 

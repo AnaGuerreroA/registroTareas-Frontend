@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 // Componentes
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { TareasComponent } from './components/tareas/tareas.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +29,6 @@ import { TablaTareasComponent } from './components/tabla-tareas/tabla-tareas.com
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     TareasComponent,
     CreaTareaComponent,
     TablaTareasComponent

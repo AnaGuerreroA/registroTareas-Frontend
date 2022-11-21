@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    background-image: url('./assets/fondo.jpg');
+    /*degrade 5 colores*/
+    background: linear-gradient(to bottom, #723d46 0%, #e26d5c 50%, #ffe1a8 100%) no-repeat fixed center;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

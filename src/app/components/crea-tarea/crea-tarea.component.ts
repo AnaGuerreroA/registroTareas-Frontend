@@ -18,7 +18,7 @@ export class CreaTareaComponent implements OnInit, OnChanges, AfterViewInit {
   Usuario: Usuario[] = [];
 
   @Output() nuevaTarea = new EventEmitter<Tarea>();
-  @Input() tarea :Tarea = {
+  @Input() tarea : Tarea = {
     tareaId: 0,
     nombre: '',
     descripcion: '',
@@ -37,6 +37,7 @@ export class CreaTareaComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnInit(): void {
     
   }
+  
   ngAfterViewInit(){
     this.usuarioService.getUsuarios().subscribe(
       res => {
@@ -52,27 +53,19 @@ export class CreaTareaComponent implements OnInit, OnChanges, AfterViewInit {
     estado: [false, Validators.required],
     usuarioId: ['', Validators.required],
   });
-
-  
-
   
   onSubmit() {
     this.tareaForm.value.UsuarioId = 1;
     var nuevaTarea: Tarea = this.tareaForm.value;
     var date = new Date();
     date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate();
-    console.log(date)
     nuevaTarea.fecha = date;
-
-
     nuevaTarea.estado = this.tareaForm.value.estado == 'true' ? true : false;
-    console.log(nuevaTarea);
     this.tareaService.createTarea(nuevaTarea).subscribe(
       res => {
         this.nuevaTarea.emit(nuevaTarea);        
         this.tareaForm.reset();
         Swal.fire({
-          position: 'top-end',
           icon: 'success',
           title: 'Tarea creada con éxito',
           showConfirmButton: false,
@@ -92,7 +85,7 @@ export class CreaTareaComponent implements OnInit, OnChanges, AfterViewInit {
 
   nuevaTareaEditar(tareaId: number) {    
     this.tareaService.getTarea(tareaId).subscribe(
-      res => {
+      res => {        
         this.tareaForm.patchValue(res);
       }
     )
@@ -100,13 +93,14 @@ export class CreaTareaComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.tarea.currentValue.id !== 0) {
+      console.log(changes);
       var datePipe = new DatePipe("en-US");
       var fecha = datePipe.transform(changes.tarea.currentValue.Fecha, 'dd-MM-yyyy');
-      this.tareaForm.value.Nombre = changes.tarea.currentValue.nombre;
-      this.tareaForm.value.Descripcion = changes.tarea.currentValue.descripcion;
-      this.tareaForm.value.Fecha = fecha;
-      this.tareaForm.value.Estado = changes.tarea.currentValue.estado;
-      this.tareaForm.value.UsuarioId = changes.tarea.currentValue.usuarioId;
+      this.tareaForm.value.nombre = changes.tarea.currentValue.nombre;
+      this.tareaForm.value.descripcion = changes.tarea.currentValue.descripcion;
+      this.tareaForm.value.fecha = fecha;
+      this.tareaForm.value.estado = changes.tarea.currentValue.estado == true ? 'true' : 'false';
+      this.tareaForm.value.usuarioId = changes.tarea.currentValue.usuarioId;
       this.tareaForm.patchValue(this.tareaForm.value);
     }
   }
